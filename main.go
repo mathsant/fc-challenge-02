@@ -47,11 +47,11 @@ func main() {
 	case msg := <-channel1: // cdn
 		var data CepResponse
 		json.NewDecoder(msg.Body).Decode(&data)
-		fmt.Printf("Received from CDN: ID: %s | CEP Resgatado: %s\n", msg.Request.URL, data.Cep)
+		fmt.Printf("Received from CDN: ID: %s | Dados Resgatados: %v\n", msg.Request.URL, data)
 	case msg := <-channel2: // via cep
 		var data CepResponse
 		json.NewDecoder(msg.Body).Decode(&data)
-		fmt.Printf("Received from Via CEP: URL: %s | CEP Resgatado: %s\n", msg.Request.URL, data.Cep)
+		fmt.Printf("Received from Via CEP: URL: %s | Dados Resgatados: %v\n", msg.Request.URL, data)
 	case <-time.After(time.Second * 1):
 		println("Timeout!")
 	}
